@@ -1,0 +1,130 @@
+type EndRound @entity(immutable: true) {
+  id: Bytes!
+  roundAddress: Bytes! # address
+  startAt: BigInt! # uint256
+  endAt: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type GiveShareLoan @entity(immutable: true) {
+  id: Bytes!
+  user: Bytes! # address
+  shareLoanAmount: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type GiveSocialLoan @entity(immutable: true) {
+  id: Bytes!
+  user: Bytes! # address
+  socialLoanAmount: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type PayDonation @entity(immutable: true) {
+  id: Bytes!
+  user: Bytes! # address
+  payDonationAmount: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type PayShareLoan @entity(immutable: true) {
+  id: Bytes!
+  user: Bytes! # address
+  payShareLoanAmount: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type PayShares @entity(immutable: true) {
+  id: Bytes!
+  meeting: BigInt! # uint256
+  user: Bytes! # address
+  shareValuePayed: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type PaySocial @entity(immutable: true) {
+  id: Bytes!
+  meeting: BigInt! # uint256
+  user: Bytes! # address
+  socialValuePayed: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type PaySocialLoan @entity(immutable: true) {
+  id: Bytes!
+  user: Bytes! # address
+  paySocialLoanAmount: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type RegisterUser @entity(immutable: true) {
+  id: Bytes!
+  user: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type RemoveUser @entity(immutable: true) {
+  id: Bytes!
+  user: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type RoleAdminChanged @entity(immutable: true) {
+  id: Bytes!
+  role: Bytes! # bytes32
+  previousAdminRole: Bytes! # bytes32
+  newAdminRole: Bytes! # bytes32
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type RoleGranted @entity(immutable: true) {
+  id: Bytes!
+  role: Bytes! # bytes32
+  account: Bytes! # address
+  sender: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type RoleRevoked @entity(immutable: true) {
+  id: Bytes!
+  role: Bytes! # bytes32
+  account: Bytes! # address
+  sender: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type SolidarityGroupCreated @entity(immutable: true) {
+  id: Bytes!
+  councilAddr: Bytes! # address
+  saveAmount: BigInt! # uint256
+  socialAmount: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}

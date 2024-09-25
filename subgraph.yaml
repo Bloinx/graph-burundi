@@ -33,3 +33,61 @@ dataSources:
         - event: SolidarityGroupCreated(address)
           handler: handleSolidarityGroupCreated
       file: ./src/solidarity-main.ts
+templates:
+  - name: SolidarityGroups
+    kind: ethereum/contract
+    network: fuji
+    source:
+      abi: SolidarityGroups
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      file: ./src/solidarity-groups.ts
+      entities:
+        - EndRound
+        - GiveShareLoan
+        - GiveSocialLoan
+        - PayDonation
+        - PayShareLoan
+        - PayShares
+        - PaySocial
+        - PaySocialLoan
+        - RegisterUser
+        - RemoveUser
+        - RoleAdminChanged
+        - RoleGranted
+        - RoleRevoked
+        - SolidarityGroupCreated
+      abis:
+        - name: SolidarityGroups
+          file: ./abis/SolidarityGroups.json
+      eventHandlers:
+        - event: EndRound(indexed address,indexed uint256,indexed uint256)
+          handler: handleEndRound
+        - event: GiveShareLoan(indexed address,indexed uint256)
+          handler: handleGiveShareLoan
+        - event: GiveSocialLoan(indexed address,indexed uint256)
+          handler: handleGiveSocialLoan
+        - event: PayDonation(indexed address,indexed uint256)
+          handler: handlePayDonation
+        - event: PayShareLoan(indexed address,indexed uint256)
+          handler: handlePayShareLoan
+        - event: PayShares(uint256,indexed address,indexed uint256)
+          handler: handlePayShares
+        - event: PaySocial(uint256,indexed address,indexed uint256)
+          handler: handlePaySocial
+        - event: PaySocialLoan(indexed address,indexed uint256)
+          handler: handlePaySocialLoan
+        - event: RegisterUser(indexed address)
+          handler: handleRegisterUser
+        - event: RemoveUser(indexed address)
+          handler: handleRemoveUser
+        - event: RoleAdminChanged(indexed bytes32,indexed bytes32,indexed bytes32)
+          handler: handleRoleAdminChanged
+        - event: RoleGranted(indexed bytes32,indexed address,indexed address)
+          handler: handleRoleGranted
+        - event: RoleRevoked(indexed bytes32,indexed address,indexed address)
+          handler: handleRoleRevoked
+        - event: SolidarityGroupCreated(indexed address,indexed uint256,indexed uint256)
+          handler: handleSolidarityGroupCreated

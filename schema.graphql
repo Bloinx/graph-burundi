@@ -35,3 +35,27 @@ type SolidarityGroupCreated @entity(immutable: true) {
   blockTimestamp: BigInt!
   transactionHash: Bytes!
 }
+
+type SolidarityGroup @entity {
+  id: Bytes!
+  council: Bytes!
+  saveAmount: BigInt!
+  socialAmount: BigInt!
+  socialFund: BigInt!
+  shareAmount: BigInt!
+  sharesFund: BigInt!
+  meeting: BigInt!
+  interesRate: BigInt!
+  registeredUsers: [User!]
+}
+
+type User @entity {
+  id: Bytes!
+  memberSince: BigInt!
+  sharesBalance: BigInt!
+  socialBalance: BigInt!
+  sharesDebt: BigInt!
+  socialDebt: BigInt!
+  lastLoanDate: BigInt
+  isActive: Boolean!
+}

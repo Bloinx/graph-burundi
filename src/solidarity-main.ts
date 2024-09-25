@@ -1,72 +1,47 @@
+import { BigInt, log } from "@graphprotocol/graph-ts";
 import {
   RoleAdminChanged as RoleAdminChangedEvent,
   RoleGranted as RoleGrantedEvent,
   RoleRevoked as RoleRevokedEvent,
-  SolidarityGroupCreated as SolidarityGroupCreatedEvent
-} from "../generated/SolidarityMain/SolidarityMain"
-import {
-  RoleAdminChanged,
-  RoleGranted,
-  RoleRevoked,
-  SolidarityGroupCreated
-} from "../generated/schema"
+  SolidarityGroupCreated as SolidarityGroupCreatedEvent,
+} from "../generated/SolidarityMain/SolidarityMain";
+import { SolidarityGroup, SolidarityGroupCreated } from "../generated/schema";
 
-export function handleRoleAdminChanged(event: RoleAdminChangedEvent): void {
-  let entity = new RoleAdminChanged(
-    event.transaction.hash.concatI32(event.logIndex.toI32())
-  )
-  entity.role = event.params.role
-  entity.previousAdminRole = event.params.previousAdminRole
-  entity.newAdminRole = event.params.newAdminRole
+import { SolidarityGroups } from "../generated/templates";
 
-  entity.blockNumber = event.block.number
-  entity.blockTimestamp = event.block.timestamp
-  entity.transactionHash = event.transaction.hash
+export function handleRoleAdminChanged(event: RoleAdminChangedEvent): void {}
 
-  entity.save()
-}
+export function handleRoleGranted(event: RoleGrantedEvent): void {}
 
-export function handleRoleGranted(event: RoleGrantedEvent): void {
-  let entity = new RoleGranted(
-    event.transaction.hash.concatI32(event.logIndex.toI32())
-  )
-  entity.role = event.params.role
-  entity.account = event.params.account
-  entity.sender = event.params.sender
-
-  entity.blockNumber = event.block.number
-  entity.blockTimestamp = event.block.timestamp
-  entity.transactionHash = event.transaction.hash
-
-  entity.save()
-}
-
-export function handleRoleRevoked(event: RoleRevokedEvent): void {
-  let entity = new RoleRevoked(
-    event.transaction.hash.concatI32(event.logIndex.toI32())
-  )
-  entity.role = event.params.role
-  entity.account = event.params.account
-  entity.sender = event.params.sender
-
-  entity.blockNumber = event.block.number
-  entity.blockTimestamp = event.block.timestamp
-  entity.transactionHash = event.transaction.hash
-
-  entity.save()
-}
+export function handleRoleRevoked(event: RoleRevokedEvent): void {}
 
 export function handleSolidarityGroupCreated(
   event: SolidarityGroupCreatedEvent
 ): void {
-  let entity = new SolidarityGroupCreated(
-    event.transaction.hash.concatI32(event.logIndex.toI32())
-  )
-  entity.childSolidarityGroup = event.params.childSolidarityGroup
+  // let entity = new SolidarityGroupCreated(
+  //   event.transaction.hash.concatI32(event.logIndex.toI32())
+  // );
+  // entity.childSolidarityGroup = event.params.childSolidarityGroup;
 
-  entity.blockNumber = event.block.number
-  entity.blockTimestamp = event.block.timestamp
-  entity.transactionHash = event.transaction.hash
+  // entity.blockNumber = event.block.number;
+  // entity.blockTimestamp = event.block.timestamp;
+  // entity.transactionHash = event.transaction.hash;
+  // entity.save();
 
-  entity.save()
+  //Instantiating data source tamplate
+  SolidarityGroups.create(event.params.childSolidarityGroup);
+  //Create etities
+  let solidarityGroup = new SolidarityGroup(event.params.childSolidarityGroup);
+  //Update entity
+  solidarityGroup.council = event.address;
+  solidarityGroup.saveAmount = BigInt.fromI32(0);
+  solidarityGroup.socialAmount = BigInt.fromI32(0);
+  solidarityGroup.socialFund = BigInt.fromI32(0);
+  solidarityGroup.shareAmount = BigInt.fromI32(0);
+  solidarityGroup.sharesFund = BigInt.fromI32(0);
+  solidarityGroup.meeting = BigInt.fromI32(0);
+  solidarityGroup.interesRate = BigInt.fromI32(0);
+
+  //Save entity
+  solidarityGroup.save();
 }

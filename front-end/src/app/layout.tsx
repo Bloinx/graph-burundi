@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { NavMenu } from "@/components/layout/Nav";
+import Header from "@/components/layout/header/Header";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,7 +16,7 @@ export default function RootLayout({
     <html lang="en" className="dark">
       <body>
         <main className="bg-background">
-          <NavMenu />
+          <Header />
           {children}
         </main>
       </body>

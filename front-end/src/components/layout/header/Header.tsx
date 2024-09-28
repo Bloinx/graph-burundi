@@ -1,8 +1,11 @@
 import React from 'react'
-import { NavMenu } from './Nav'
+import { Nav } from './Nav'
 
 export default function Header() {
   return (
-    <NavMenu />
+      <div className='flex gap-4 items-center'>
+        <h1 className='font-bold'>Burundi</h1>
+        <Nav />
+      </div>
   )
 }

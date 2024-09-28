@@ -16,8 +16,10 @@ export default function RootLayout({
     <html lang="en" className="dark">
       <body>
         <main className="bg-background">
-          <Header />
-          {children}
+          <div className="flex flex-col justify-center gap-2 p-8">
+            <Header />
+            {children}
+          </div>
         </main>
       </body>
     </html>

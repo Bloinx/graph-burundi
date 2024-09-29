@@ -42,7 +42,6 @@ function loadSolidarityGroup(groupId: Bytes): SolidarityGroup | null {
   return solidarityGroup;
 }
 
-
 //Updated
 export function handleSolidarityGroupCreated(
   event: SolidarityGroupCreatedEvent
@@ -69,7 +68,8 @@ export function handleRegisterUser(event: RegisterUserEvent): void {
   //Create entities
   let user = new User(event.params.user);
   //Load entities
-  let solidarityGroup = loadSolidarityGroup(event.address);
+  const solidarityGroupAddress = event.address
+  let solidarityGroup = loadSolidarityGroup(solidarityGroupAddress);
   if (solidarityGroup == null) return;
   //Update entities
   user.memberSince = event.block.timestamp;
@@ -88,6 +88,7 @@ export function handleRegisterUser(event: RegisterUserEvent): void {
       solidarityGroup.registeredUsers = registeredUsers;
     }
   }
+  user.SolidarityGroup = solidarityGroupAddress;
   user.isActive = true;
   //Save entities
   solidarityGroup.save();
@@ -192,7 +193,6 @@ export function handleGiveSocialLoan(event: GiveSocialLoanEvent): void {
   user.save();
 }
 
-
 //Updated
 export function handlePayShareLoan(event: PayShareLoanEvent): void {
   //Load entities
@@ -221,6 +221,7 @@ export function handlePayShares(event: PaySharesEvent): void {
   let shares = event.params.shareValuePayed.times(solidarityGroup.shareAmount);
   user.sharesBalance = user.sharesBalance.plus(shares);
   solidarityGroup.sharesFund = solidarityGroup.sharesFund.plus(shares);
+
   //Save entities
   solidarityGroup.save();
   user.save();

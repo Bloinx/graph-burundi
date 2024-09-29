@@ -58,5 +58,5 @@ type User @entity {
   socialDebt: BigInt!
   lastLoanDate: BigInt
   isActive: Boolean!
-  SolidarityGroup: SolidarityGroup!
+  solidarityGroup: SolidarityGroup!
 }

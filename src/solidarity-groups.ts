@@ -88,7 +88,7 @@ export function handleRegisterUser(event: RegisterUserEvent): void {
       solidarityGroup.registeredUsers = registeredUsers;
     }
   }
-  user.SolidarityGroup = solidarityGroupAddress;
+  user.solidarityGroup = solidarityGroupAddress;
   user.isActive = true;
   //Save entities
   solidarityGroup.save();

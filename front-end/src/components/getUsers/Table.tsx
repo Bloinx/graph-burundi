@@ -35,6 +35,13 @@ export default function DataTable() {
       <TableHeader>
         <TableRow>
           <TableHead>Address</TableHead>
+          <TableHead>Member since</TableHead>
+          <TableHead>Shares balance</TableHead>
+          <TableHead>Social balance</TableHead>
+          <TableHead>Shares debt</TableHead>
+          <TableHead>Social debt</TableHead>
+          <TableHead>Last loan date</TableHead>
+          <TableHead>Is active</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -42,6 +49,13 @@ export default function DataTable() {
           data?.users?.map((user) => (
             <TableRow key={user.id}>
               <TableCell>{user.id}</TableCell>
+              <TableCell>{user.memberSince}</TableCell>
+              <TableCell>{user.sharesBalance}</TableCell>
+              <TableCell>{user.socialBalance}</TableCell>
+              <TableCell>{user.sharesDebt}</TableCell>
+              <TableCell>{user.socialDebt}</TableCell>
+              <TableCell>{user.lastLoanDate}</TableCell>
+              <TableCell>{user.isActive}</TableCell>
             </TableRow>
           ))
         }

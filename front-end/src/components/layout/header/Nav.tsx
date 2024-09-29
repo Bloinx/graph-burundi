@@ -39,6 +39,9 @@ export function Nav() {
               <ListItem href="/getUsers" title="Get users">
                 get users information
               </ListItem>
+              <ListItem href="/getRoundUsers" title="Get round users">
+                get users per round
+              </ListItem>
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>

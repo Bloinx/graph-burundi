@@ -15,6 +15,7 @@ import { burundiGraphBaseUrl } from '@/graphQl/contants'
 import { getUsersQuery } from '@/graphQl/querys/getUsers'
 import { Users } from '@/types/getUsers'
 import { useEffect } from 'react'
+import { shortenAddress } from '@/functions/commons/coupling'
 
 
 export default function DataTable() {
@@ -34,6 +35,7 @@ export default function DataTable() {
       <TableCaption>A list of all users.</TableCaption>
       <TableHeader>
         <TableRow>
+          <TableHead>SolidarityGroup</TableHead>
           <TableHead>Address</TableHead>
           <TableHead>Member since</TableHead>
           <TableHead>Shares balance</TableHead>
@@ -48,7 +50,8 @@ export default function DataTable() {
         {
           data?.users?.map((user) => (
             <TableRow key={user.id}>
-              <TableCell>{user.id}</TableCell>
+              <TableCell>{shortenAddress(user.solidarityGroup.id)}</TableCell>
+              <TableCell>{shortenAddress(user.id)}</TableCell>
               <TableCell>{user.memberSince}</TableCell>
               <TableCell>{user.sharesBalance}</TableCell>
               <TableCell>{user.socialBalance}</TableCell>

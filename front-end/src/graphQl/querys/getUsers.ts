@@ -10,6 +10,9 @@ export const getUsersQuery = gql`
       sharesDebt
       socialDebt
       lastLoanDate
+      solidarityGroup {
+        id
+      }
       isActive
     }
   }

@@ -8,6 +8,9 @@ type User = {
   sharesDebt: number;
   socialDebt: number;
   lastLoanDate: number;
+  solidarityGroup: {
+    id: string
+  }
   isActive: number;
 };
 export type Users = {

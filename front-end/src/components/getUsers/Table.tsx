@@ -1,3 +1,7 @@
+'use client'
+import { useQuery } from '@tanstack/react-query'
+import { request } from 'graphql-request'
+
 import {
   Table,
   TableBody,
@@ -7,27 +11,40 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
+import { burundiGraphBaseUrl } from '@/graphQl/contants'
+import { getUsersQuery } from '@/graphQl/querys/getUsers'
+import { Users } from '@/types/getUsers'
+import { useEffect } from 'react'
 
 
 export default function DataTable() {
+  const { data, isLoading, error } = useQuery<Users>({
+    queryKey: ['data'],
+    async queryFn() {
+      return await request(burundiGraphBaseUrl, getUsersQuery)
+    }
+  })
+  useEffect(() => {
+    console.log(data)
+  }, [data])
+  if (isLoading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error as string}</p>;
   return (
     <Table>
       <TableCaption>A list of all users.</TableCaption>
       <TableHeader>
         <TableRow>
-          <TableHead className="w-[100px]">Invoice</TableHead>
-          <TableHead>Status</TableHead>
-          <TableHead>Method</TableHead>
-          <TableHead className="text-right">Amount</TableHead>
+          <TableHead>Address</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
-        <TableRow>
-          <TableCell className="font-medium">INV001</TableCell>
-          <TableCell>Paid</TableCell>
-          <TableCell>Credit Card</TableCell>
-          <TableCell className="text-right">$250.00</TableCell>
-        </TableRow>
+        {
+          data?.users?.map((user) => (
+            <TableRow key={user.id}>
+              <TableCell>{user.id}</TableCell>
+            </TableRow>
+          ))
+        }
       </TableBody>
     </Table>
 

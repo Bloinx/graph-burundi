@@ -16,6 +16,7 @@ import { getUsersQuery } from '@/graphQl/querys/getUsers'
 import { Users } from '@/types/getUsers'
 import { useEffect } from 'react'
 import { shortenAddress } from '@/functions/commons/coupling'
+import DataTableSkeleton from './DataTableSekelton'
 
 
 export default function DataTable() {
@@ -28,7 +29,7 @@ export default function DataTable() {
   useEffect(() => {
     console.log(data)
   }, [data])
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <DataTableSkeleton />;
   if (error) return <p>Error: {error as string}</p>;
   return (
     <Table>

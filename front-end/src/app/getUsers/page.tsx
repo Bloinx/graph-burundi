@@ -1,4 +1,4 @@
-import DataTable from '@/components/getUsers/Table'
+import DataTable from '@/components/getUsers/DataTable'
 import React from 'react'
 
 export default function UsersInformationPage() {

@@ -1,3 +1,4 @@
+
 'use client'
 import { useQuery } from '@tanstack/react-query'
 import { request } from 'graphql-request'
@@ -18,8 +19,11 @@ import { useEffect } from 'react'
 import { shortenAddress } from '@/functions/commons/coupling'
 import DataTableSkeleton from '../shared/DataTableSekelton'
 
+type Props = {
+  roundId: string
+}
 
-export default function DataTable() {
+export default function DataTable({ roundId }: Props) {
   const { data, isLoading, error } = useQuery<Users>({
     queryKey: ['data'],
     async queryFn() {
@@ -33,7 +37,7 @@ export default function DataTable() {
   if (error) return <p>Error: {error as string}</p>;
   return (
     <Table>
-      <TableCaption>A list of all users.</TableCaption>
+      <TableCaption>List of users on round: {roundId}.</TableCaption>
       <TableHeader>
         <TableRow>
           <TableHead>SolidarityGroup</TableHead>

@@ -18,7 +18,7 @@ export default function RootLayout({
       <body>
         <Providers>
           <main className="bg-background">
-            <div className="flex flex-col justify-center gap-2 p-8">
+            <div className="min-h-screen flex flex-col gap-2 p-8">
               <Header />
               {children}
             </div>
